@@ -18,7 +18,7 @@ Output: "bb"
 package Longest_Palindromic_Substring_5;
 
 public class Solution {
-	public static String longestPalindrome(String s) {
+	public String longestPalindrome(String s) {
 		
 		String mem = "";
 		String longestSubstring = s.substring(0,1);
@@ -65,8 +65,9 @@ public class Solution {
     }
 	public static void main(String[] args) {
 		String test = "cbaabaaaaaaaabcd";
-		System.out.println(longestPalindrome(test));
-		;
+		Solution a = new Solution();
+		System.out.println(a.longestPalindrome(test));
+		
 
 	}
 
