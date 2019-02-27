@@ -28,7 +28,7 @@ package Longest_substring_no_repeat_3;
 
 public class solution1 {
 	
-	public static int lengthOfLongestSubstring(String s) {
+	public int lengthOfLongestSubstring(String s) {
 		
 		String mem = "";
 		int count = 0;
@@ -41,7 +41,6 @@ public class solution1 {
 
 				mem += s.substring(i,i+1);
 				count = mem.length();
-				System.out.println(mem);
 				if (longestSubstring < count ) {
 					
 					longestSubstring = count;
@@ -52,20 +51,25 @@ public class solution1 {
 			
 			else {
 				
-				count=0;
-				mem= "";
-				
+                if (mem.length() != 1 ) { 
+                	mem = mem.substring ( mem.indexOf(s.substring(i, i+1) ) + 1 , mem.length ()) + s.substring(i,i+1);
+                	count= mem.length();  
+                }
+                
 			}
 			
+            System.out.println(i + mem);
 		}
 		
 		
 		return longestSubstring;
         
+    	}
+        
     }
 	public static void main(String[] args) {
-		//System.out.println(lengthOfLongestSubstring("bbbbb" ));
-		System.out.println(lengthOfLongestSubstring("pwwkewabcdfghijlmm" ));
+		solution1 ans = new solution1();
+	     System.out.print(ans.lengthOfLongestSubstring( "aabaab!bb"));
 	}
 
 }
