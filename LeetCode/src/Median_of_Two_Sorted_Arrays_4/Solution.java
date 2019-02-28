@@ -30,7 +30,7 @@ import java.util.List;
 
 public class Solution {
 	
-	public static double findMedianSortedArrays(int[] nums1, int[]  nums2) {
+	public double findMedianSortedArrays(int[] nums1, int[]  nums2) {
 		
 		List<Integer> nums = new ArrayList<Integer>();
 		
@@ -59,7 +59,7 @@ public class Solution {
         
     }
 	
-	public static List<Integer> bSort(int target , List<Integer> blist, List<Integer> listFinal) {
+	public List<Integer> bSort(int target , List<Integer> blist, List<Integer> listFinal) {
 		
 		int binaryValue = (int) blist.get(blist.size()/2); 
 		
