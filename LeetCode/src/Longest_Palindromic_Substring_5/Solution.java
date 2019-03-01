@@ -18,55 +18,88 @@ Output: "bb"
 package Longest_Palindromic_Substring_5;
 
 public class Solution {
+	
+
 	public String longestPalindrome(String s) {
+        
+		if (s.length() == 0) return s;
 		
-		String mem = "";
-		String longestSubstring = s.substring(0,1);
+        	String mem = s.substring(0,1);
+		String longestSubstring;
 
-		
 		for (int i = 0; i < s.length() - 1 ;i++) {
-			for ( int j = i+1 ; j < s.length();j++) {
-				//System.out.println("longestSubstring:"+longestSubstring + " " + i);
-				//System.out.println("mem:"+mem+ " " + j);
-				if ( !longestSubstring.substring(0,1).equals( s.substring(j, j+1) ) ) {
-
-					longestSubstring += s.substring(j,j+1);
-					
-					if (longestSubstring.length() == s.length()) {
-						longestSubstring= s.substring(i+1,i+2);
-						break;
-					}
-					
-					
-					
-				}
+			for ( int j = s.length()-1 ; j > i ;j--) {
+                
+				longestSubstring = s.substring(i,j+1);
+                
+				if ( longestSubstring.length() < mem.length() ) {break;} 
 				
-				else {
-					
-					if (longestSubstring.length() > mem.length() - 1 ) {
-						
-						mem = longestSubstring + longestSubstring.substring(0,1) ;
-						
-					}
-					
-					longestSubstring= s.substring(i+1,i+2);
-					
-					break;
-				}
-				
-				
-			}
-			
-			
+                if (isPalindrome(longestSubstring) && longestSubstring.length() >= mem.length()) {
+                   
+                    mem = longestSubstring;
+                    break;
+                
+                }
+			}	
 		}
 		
 		
 		return mem ;
     }
+		
+	private boolean isPalindrome(String s){
+        
+        if ( s.length() % 2 == 0 ) {
+        	
+        	String left = s.substring(0,s.length()/2);
+        	String right = s.substring(s.length()/2,s.length());
+        	int i = 0 , j = left.length()-1; 
+        	while ( i < left.length()  ) {
+        		
+        		if ( left.charAt(i) != right.charAt(j) ) {
+        			return false;
+        			
+        		}
+        		
+        		i++;
+        		j--;
+        	}
+        	
+        	return true;
+        	
+        }
+        
+        else {
+
+        	String left = s.substring(0,s.length()/2);
+        	String right = s.substring(s.length()/2+1,s.length());
+        	int i = 0 , j = left.length()-1; 
+        	while ( i < left.length()  ) {
+        		
+        		if ( left.charAt(i) != right.charAt(j) ) {
+        			return false;
+        			
+        		}
+        		
+        		i++;
+        		j--;
+        	}
+        	
+        	return true;
+        	
+        	
+        	
+        }
+    
+        
+        
+        
+    }
+		
 	public static void main(String[] args) {
-		String test = "cbaabaaaaaaaabcd";
-		Solution a = new Solution();
-		System.out.println(a.longestPalindrome(test));
+		Solution ans = new Solution();
+		String test = "abbbbbba";
+		System.out.println(ans.longestPalindrome(test));
 		
 
 	}
