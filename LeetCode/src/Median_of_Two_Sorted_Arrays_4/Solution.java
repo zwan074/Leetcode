@@ -42,55 +42,18 @@ public class Solution {
 
 		for (Integer n:nums2) {
 			
-			nums = bSort(n,nums,nums);
+			nums.add(n);
 			
 		}
 		
-		if (nums.size() %2 == 0) {
-			
-			return (double) (nums.get(nums.size()/2) + nums.get(nums.size()/2 -1 )) / 2 ;
-			
-		}
-		else {
-			
-			return (double) nums.get(nums.size()/2);
-		}
-		
+        	Collections.sort(nums);
         
-    }
-	
-	public List<Integer> bSort(int target , List<Integer> blist, List<Integer> listFinal) {
-		
-		int binaryValue = (int) blist.get(blist.size()/2); 
-		
-		
-		if (blist.size() == 1) {
-			listFinal.add(listFinal.indexOf(blist.get(0)) + 1, target);
-			//System.out.println(listFinal);
-			return listFinal;
-			
-			
-		}
-		 
-		
-		else if ( target > binaryValue ) {
-			
-			blist = blist.subList(blist.size()/2, blist.size());
-			bSort(target, blist , listFinal );
-			
-		}
-		
-		else if ( target <= binaryValue ) {
-			
-			blist =  blist.subList(0, blist.size()/2);
-			bSort(target, blist,listFinal );
-			
-		}
-
-		return listFinal;
+		return (nums.size() %2 == 0) ? (nums.get(nums.size()/2) + nums.get(nums.size()/2 -1 )) / 2 : nums.get(nums.size()/2);
 		
 		
 	}
+    }
+		
 	
 	
 	public static void main(String[] args) {
