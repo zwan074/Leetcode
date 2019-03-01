@@ -48,7 +48,8 @@ public class Solution {
 		
         	Collections.sort(nums);
         
-		return (nums.size() %2 == 0) ? (nums.get(nums.size()/2) + nums.get(nums.size()/2 -1 )) / 2 : nums.get(nums.size()/2);
+		return (nums.size() %2 == 0) ? (double)  (nums.get(nums.size()/2) + nums.get(nums.size()/2 -1 )) / 2 : 
+		(double) nums.get(nums.size()/2);
 		
 		
 	}
