@@ -4,23 +4,46 @@ import Remove_Nth_Node_From_End_of_List_19.ListNode;
 
 public class solution2 {
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		ListNode dummyHead = new ListNode(0);
-		ListNode p = l1, q = l2, curr = dummyHead;
-		int carry = 0;
-		while (p != null || q != null) {
-		    int x = (p != null) ? p.val : 0;
-		    int y = (q != null) ? q.val : 0;
-		    int sum = carry + x + y;
-		    carry = sum / 10;
-		    curr.next = new ListNode(sum % 10);
-		    curr = curr.next;
-		    if (p != null) p = p.next;
-		    if (q != null) q = q.next;
+		
+		
+		ListNode first1 = l1;
+		ListNode first2 = l2;
+		ListNode l = new ListNode(0);
+		
+		int carry = 0 ;
+		int sum = l1.val + l2.val;
+		
+		if (sum>10) { l = new ListNode(sum-10); carry = 1;}
+		else { l = new ListNode(sum);}
+		
+		ListNode curr = l;
+		while (first1.next != null && first2.next != null) {
+		
+			if (  first1.next.val + first2.next.val  < 10 ) {
+				sum = first1.next.val + first2.next.val + carry ;
+				first1 = first1.next;
+				first2 = first2.next;
+				curr.next = new ListNode(sum);
+				curr = curr.next;
+				carry = 0;
+			}
+			
+			else {
+				
+			
+				sum = first1.next.val + first2.next.val - 10 + carry;
+				first1 = first1.next;
+				first2 = first2.next;
+				curr.next = new ListNode(sum);
+				curr = curr.next;
+				carry = 1;
+						
+			}
+			
+			
 		}
-		if (carry > 0) {
-		    curr.next = new ListNode(carry);
-		}
-		return dummyHead.next;
+		
+		return l;
 		
 	}
 	

@@ -24,7 +24,7 @@ public class Solution {
         
 		if (s.length() == 0) return s;
 		
-        	String mem = s.substring(0,1);
+        String mem = s.substring(0,1);
 		String longestSubstring;
 
 		for (int i = 0; i < s.length() - 1 ;i++) {
@@ -37,6 +37,16 @@ public class Solution {
                 if (isPalindrome(longestSubstring) && longestSubstring.length() >= mem.length()) {
                    
                     mem = longestSubstring;
+                    
+                    if (longestSubstring.length() % 2 == 0 ) {
+                    	
+                    	i = i + longestSubstring.length()/2;
+                    }
+                    
+                    else {
+                    	
+                    	i = i + longestSubstring.length()/2 - 1;
+                    }
                     break;
                 
                 }
@@ -98,7 +108,7 @@ public class Solution {
 		
 	public static void main(String[] args) {
 		Solution ans = new Solution();
-		String test = "abbbbbba";
+		String test = "acccafddbddfffffffffffffddb";
 		System.out.println(ans.longestPalindrome(test));
 		
 

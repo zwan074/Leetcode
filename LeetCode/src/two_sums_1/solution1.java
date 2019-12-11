@@ -20,8 +20,7 @@ public class solution1 {
 	
 	 public static int[] twoSum(int[] nums, int target) {
 	        
-		public int[] twoSum(int[] nums, int target) {
-        	HashMap<Integer,Integer> hm = new HashMap<>();
+		HashMap<Integer,Integer> hm = new HashMap<>();
 		int i =0; 
 		
 		for ( int n : nums) {
@@ -33,7 +32,7 @@ public class solution1 {
 		
 		for (i =0; i < nums.length; i++ ) {
 			
-			if ( hm.containsKey(target - nums[i]) && hm.get(target - nums[i]) != i ) {
+			if ( hm.containsKey(target - nums[i]) && nums[i] != (target - nums[i]) ) {
 				
 				int value = target - nums[i];	
 				int[] index = {i, (int) hm.get(value)};
@@ -47,7 +46,6 @@ public class solution1 {
 		
 		int[] index =  {-1,-1};
 		return index;
-    }
 		
 	}
 	 

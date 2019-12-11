@@ -30,7 +30,7 @@ import java.util.List;
 
 public class Solution {
 	
-	public double findMedianSortedArrays(int[] nums1, int[]  nums2) {
+	public static double findMedianSortedArrays(int[] nums1, int[]  nums2) {
 		
 		List<Integer> nums = new ArrayList<Integer>();
 		
@@ -42,19 +42,55 @@ public class Solution {
 
 		for (Integer n:nums2) {
 			
-			nums.add(n);
+			nums = bSort(n,nums,nums);
 			
 		}
 		
-        	Collections.sort(nums);
+		if (nums.size() %2 == 0) {
+			
+			return (double) (nums.get(nums.size()/2) + nums.get(nums.size()/2 -1 )) / 2 ;
+			
+		}
+		else {
+			
+			return (double) nums.get(nums.size()/2);
+		}
+		
         
-		return (nums.size() %2 == 0) ? (double)  (nums.get(nums.size()/2) + nums.get(nums.size()/2 -1 )) / 2 : 
-		(double) nums.get(nums.size()/2);
+    }
+	
+	public static List<Integer> bSort(int target , List<Integer> blist, List<Integer> listFinal) {
+		
+		int binaryValue = (int) blist.get(blist.size()/2); 
+		
+		
+		if (blist.size() == 1) {
+			listFinal.add(listFinal.indexOf(blist.get(0)) + 1, target);
+			//System.out.println(listFinal);
+			return listFinal;
+			
+			
+		}
+		 
+		
+		else if ( target > binaryValue ) {
+			
+			blist = blist.subList(blist.size()/2, blist.size());
+			bSort(target, blist , listFinal );
+			
+		}
+		
+		else if ( target <= binaryValue ) {
+			
+			blist =  blist.subList(0, blist.size()/2);
+			bSort(target, blist,listFinal );
+			
+		}
+
+		return listFinal;
 		
 		
 	}
-    }
-		
 	
 	
 	public static void main(String[] args) {

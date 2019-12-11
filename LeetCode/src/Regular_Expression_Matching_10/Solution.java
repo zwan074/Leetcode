@@ -72,11 +72,12 @@ public class Solution {
 			
 			if ( pp.equals("*") ) {
 				
-				ss.subSequence()
+				ss.subSequence(i, i);
 			}
 			
 			
 		}
+		return false;
 		
 		
     }

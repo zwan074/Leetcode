@@ -64,11 +64,9 @@ public class solution1 {
 		
 		return longestSubstring;
         
-    	}
-        
     }
 	public static void main(String[] args) {
-		solution1 ans = new solution1();
+		 solution1 ans = new solution1();
 	     System.out.print(ans.lengthOfLongestSubstring( "aabaab!bb"));
 	}
 
