@@ -1,5 +1,6 @@
 package q430E;
 
+import java.util.Stack;
 
 public class Solution {
 	public Node flatten(Node head) {
@@ -7,78 +8,52 @@ public class Solution {
 		if (head == null) return null;
 		if (head.next == null) return head;
 
-		boolean hasNext = true;
+		Stack<Node> stack = new Stack<>();
 		Node next = head;
 		
-		while (hasNext) {
+		while (next != null || !stack.isEmpty() ) {
 			
-			if ( next.child == null && next.next == null) {
-				hasNext = false;
+			System.out.println(next.val);
+			if (next.child == null && next.next != null) {
+				next = next.next;
 			}
-
-			else if (next.child == null && next.next != null) {
+			else if ( next.child!= null && next.next == null) {
+				
+				next.next = next.child;
+				next.child.prev = next;
+				next.child = null;
 				next = next.next;
 				
 			}
-			
-			else {
-				mergeSubLine (next);
-				
+			else if(next.child !=null) {
+				stack.push(next.next);
+				for(Node n : stack) {
+					 System.out.print(n + " ");
+				}
+				next.next = next.child;
+				next.child.prev = next;
+				next.child = null;
+				next = next.next;
 			}
 			
-			
+			else if (next.next == null) {
+				
+				if (stack.size() > 0) {
+					Node conn = stack.pop();
+					next.next = conn;
+					conn.prev = next;
+					next =conn;	
+				}
+					
+				
+			}
 		}
-		
-		
-		
 		
 		
 		return head;
         
     }
 	
-	void mergeSubLine (Node n) {
-		
-		
-		
-		if (n.next == null) {
-			n.next = n.child;
-			n.child = null;
-			n.next.prev = n;
-		}
-		
-		else {
-			
-			boolean hasNext = true;
-			Node mainLineNext = n.next;
-			
-			n.next = n.child;
-			n.child = null;
-			n.next.prev = n;
-			
-			Node next = n;
-			
-			while (hasNext) {
-
-				next = next.next;
-				if (next.next == null) {
-					hasNext = false;
-					next.next = mainLineNext;
-					mainLineNext.prev = next;
-				}
-
-				
-			}
-		}
-		
-		
-		
-		
-		
-	}
-	 
-	public static void main(String[] args) {
-
-	}
+	
 
 }
